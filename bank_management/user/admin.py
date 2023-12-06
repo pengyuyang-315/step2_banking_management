@@ -32,7 +32,7 @@ class admin:
         columns = ["name","email","PhoneNumber","created_date","balance"]
         for info, column in zip(information, columns):
             print(f"{column}: {info}")
-    
+        return information
 
     # 1: password 2: phoneNumber 3. email
     def edit_client_detail(self,cl,optionNumber,new_one):
