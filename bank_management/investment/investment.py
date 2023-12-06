@@ -32,12 +32,14 @@ class mortgage(investment):
         """
         payment=self.P*(self.r*pow((1+self.r),self.n))/pow((1+self.r),self.n)
         print("the monthly payment should be: ",payment)
+        return payment
     def show_details(self):
         """
         Print detailed information about the mortgage.
         """
         print("The information details are:")
         print("rate:",self.rate,", risk:",self.risk,", year:",self.n,", initial payment:",self.P)
+        
     
 
 
@@ -61,6 +63,7 @@ class zero_coupon_bond(investment):
         """
         fv=pow((1+self.rate),self.n)*self.pv
         print("the fv of the zero-coupon bond is: ",fv)
+        return fv
 
     def calculate_YTM(self):
         """
@@ -100,9 +103,11 @@ class government_bond(investment):
         if(self.f==1):
             payment=self.pv*self. rate
             print("the bond will be paid annual. The payment each time is: ",payment)
+            return payment
         elif(self.f==2):
             payment=self.pv*self.rate/2
             print("the bond will be paid semi-annual. The payment each time is: ",payment)
+            return payment
         else:
             print("wrong input in the annual/ semi-annual section. Government bond will only be paid in one of the 2 ways.")
         
