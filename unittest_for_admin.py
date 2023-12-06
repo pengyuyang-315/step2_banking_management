@@ -6,10 +6,10 @@ from bank_management.user.admin import admin, admin_login,admin_operations
 class TestAdmin(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Set up common resources for the entire test class
-        cls.admin1 = admin("John", 123, 456)
-        cls.client1 = client("Alice", "alice@email.com", 123456789, 1000.0, 1234)
-        cls.clients_dict = {"Alice": cls.client1}
+        cls.operationNumber1 = 1
+        cls.operationNumber2 = 2
+        cls.operationNumber3 = 3
+        cls.new_one = 1234
 
     @classmethod
     def tearDownClass(cls):
@@ -17,10 +17,10 @@ class TestAdmin(unittest.TestCase):
         print("tearDownClass")
 
     def setUp(self):
-        self.operationNumber1 = 1
-        self.operationNumber2 = 2
-        self.operationNumber3 = 3
-        self.new_one = 1234
+        # Set up common resources for the entire test class
+        self.admin1 = admin("John", 123, 456)
+        self.client1 = client("Alice", "alice@email.com", 123456789, 1000.0, 1234)
+        self.clients_dict = {"Alice": self.client1}
         # Set up resources specific to each test case
         print("setUp")
 
@@ -32,22 +32,19 @@ class TestAdmin(unittest.TestCase):
         print("test_edit_client_password")
         self.admin1.edit_client_detail(self.client1,self.operationNumber1,self.new_one)
         self.assertEqual(self.client1._password, 1234)
+        self.admin1.edit_client_detail(self.client1,self.operationNumber2,self.new_one)
+        self.assertEqual(self.client1.phoneNumber, 1234)
+        self.admin1.edit_client_detail(self.client1,self.operationNumber3,self.new_one)
+        self.assertEqual(self.client1.email, 1234)
 
     def test_show_client_detail(self):
         # Test the show_client_detail method of the admin class
         print("test_show_client_detail")
         information = self.admin1.show_client_detail(self.client1)
-        self.assertEqual(information, self.client1.show_information())
-
-    def test_edit_client_phoneNumber(self):
-        print("test_edit_client_phoneNumber")
-        self.admin1.edit_client_detail(self.client1,self.operationNumber2,self.new_one)
-        self.assertEqual(self.client1.phoneNumber, 1234)
-
-    def test_edit_client_emai(self):
-        print("test_edit_client_email")
-        self.admin1.edit_client_detail(self.client1,self.operationNumber3,self.new_one)
-        self.assertEqual(self.client1.email, 1234)
+        self.assertEqual(information[0], "Alice")
+        self.assertEqual(information[1], "alice@email.com")
+        self.assertEqual(information[2], 123456789)
+        self.assertEqual(information[4], 1000.0)
 
     
 if __name__ == '__main__':
