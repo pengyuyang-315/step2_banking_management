@@ -26,26 +26,23 @@ class TestClient(unittest.TestCase):
         # Clean up resources used in the test case
         print("tearDown")
 
-    def test_save_money(self):
+    def test_basic_operation(self):
         print("run test_save_money")
         self.client1.save_money(500.0)
         self.assertEqual(self.client1._balance, 1500.0)
-
-    def test_withdraw_money(self):
         print("run test_withdraw_money")
         self.client2.withdraw_money(200.0)
         self.assertEqual(self.client2._balance, 300.0)
-
-    def test_transfer(self):
         print("run test_transfer")
         self.client1.transfer(self.transfer_amount, self.client2)
-        self.assertEqual(self.client1._balance, 800.0)
-        self.assertEqual(self.client2._balance, 700.0)
+        self.assertEqual(self.client1._balance, 1300.0)
+        self.assertEqual(self.client2._balance, 500.0)
 
-    def test_show_information(self):
+    def test__information(self):
         info = self.client1.show_information()
         self.assertEqual(info[0], "Alice")
         self.assertEqual(info[4], 1000.0)
+        self.assertEqual(self.client1.get_password(),1234)
 
 if __name__ == '__main__':
     unittest.main()
