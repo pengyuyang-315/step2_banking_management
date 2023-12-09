@@ -1,1 +1,0 @@
-test_show_client_detail
