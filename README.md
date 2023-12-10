@@ -24,6 +24,11 @@ start.main()
 ```
 Then this block is used to start our program.
 
+## Things to notice about test files required in step 1
+Before run the test file in subpackage investment, go to the 7th line manage_investment.py and delete a dot
+into this "from investment import investment,mortgage,zero_coupon_bond,government_bond"
+But when running test.ipynb or start.py, add the dot back.
+
 ## Functions
 
 ### `clients_initialization()`
